@@ -33,7 +33,8 @@ def receive_data():
         with open("log_name.json", "a") as f:
             try:
                 requests.post(
-                    "http://localhost:4545/dht_data", json=json.dumps(data_dict)
+                    "http://localhost:4545/dht_data",
+                    json=json.dumps(data_dict),
                 )
             except:
                 pass
