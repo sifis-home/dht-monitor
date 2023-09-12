@@ -7,9 +7,10 @@ RUN apt-get update && apt-get -y install python3 python3-pip
 RUN mkdir /app
 
 # Copia i tuoi script nella directory del contenitore
-COPY dynamic_server.py /app
-COPY send_data.py /app
-COPY catch_topic.py /app
+ADD dht_monitor/ /app
+#COPY dynamic_server.py /app
+#COPY send_data.py /app
+#COPY catch_topic.py /app
 
 # Imposta la directory di lavoro all'interno del contenitore
 WORKDIR /app
