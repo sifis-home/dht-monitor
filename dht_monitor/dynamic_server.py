@@ -3,9 +3,8 @@ import time
 from collections import defaultdict
 
 import requests
-from flask import Flask, request
-
 import send_data
+from flask import Flask, request
 
 app = Flask(__name__)
 
