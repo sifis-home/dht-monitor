@@ -33,6 +33,27 @@ def on_message(ws, message):
             print("Failed to send data to Flask server")
 
 
+# Funzione di test semplice per on_message
+def test_on_message_simple():
+    # Definire il messaggio JSON fittizio
+    json_message = {
+        "Persistent": {"topic_name": "test_topic", "topic_uuid": "12345"}
+    }
+
+    # Mock della richiesta HTTP per restituire uno stato 200
+    with patch.object(requests, "post") as mock_post:
+        mock_post.return_value.status_code = 200
+
+        # Chiamare la funzione target
+        catch_topic.on_message(None, json.dumps(json_message))
+
+    # Non è necessario testare le chiamate a print in questo caso
+    # Verificare che la richiesta HTTP sia stata chiamata con i dati corretti
+    mock_post.assert_called_once_with(
+        "http://localhost:4646/topic", json=json_message["Persistent"]
+    )
+
+
 # Funzione di test per on_error
 def test_on_error():
     # Mock delle chiamate a print
